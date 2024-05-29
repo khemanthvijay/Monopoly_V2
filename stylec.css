@@ -1,3 +1,27 @@
+.rotate-message {
+	display: block;
+  }
+.responsive,.user-controls {
+    display: none;
+  }
+@media only screen and (orientation: landscape) and (max-width: 768px) {
+	.responsive,.user-controls {
+		display: block;
+	  }
+  .rotate-message {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .responsive,.user-controls {
+    display: block;
+  }
+  .rotate-message {
+    display: none;
+  }
+}
+
 body {
 	display: flex;
 	justify-content:flex-start;
