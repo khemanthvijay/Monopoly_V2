@@ -1083,7 +1083,7 @@ function checkOrientation() {
       let responEle = document.getElementById("responsive-id");
       let usercontrolEle = document.getElementById("controls-container-id");
       responEle.display = "block";
-      usercontrolEle = "block";
+      usercontrolEle = "flex";
       rotateEle.display ="none";
     console.log("Landscape mode");
   } else {
