@@ -1079,18 +1079,18 @@ monopolyGame.initializeGame();
 function checkOrientation() {
   if (window.innerWidth > window.innerHeight) {
     // Landscape orientation
-      let rotateEle = document.getElementsByClassName("rotate-message");
-      let responEle = document.getElementsByClassName("responsive");
-      let usercontrolEle = document.getElementsByClassName("controls-container");
+      let rotateEle = document.getElementById("rotate-message-id");
+      let responEle = document.getElementById("responsive-id");
+      let usercontrolEle = document.getElementById("controls-container-id");
       responEle.display = "block";
       usercontrolEle = "block";
       rotateEle.display ="none";
     console.log("Landscape mode");
   } else {
     // Portrait orientation
-      let rotateEle = document.getElementsByClassName("rotate-message");
-      let responEle = document.getElementsByClassName("responsive");
-      let usercontrolEle = document.getElementsByClassName("controls-container");
+      let rotateEle = document.getElementById("rotate-message-id");
+      let responEle = document.getElementById("responsive-id");
+      let usercontrolEle = document.getElementById("controls-container-id");
       responEle.display = "none";
       usercontrolEle = "none";
       rotateEle.display ="block";
