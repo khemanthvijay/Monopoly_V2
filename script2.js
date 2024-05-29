@@ -405,7 +405,7 @@ class Game {
                 diceElement.classList.remove('fade-in');
             }, 3000);
         var total = parseInt(random1+random2);
-        this.movePlayerAnimation(7);
+        this.movePlayerAnimation(total);
         //console.log(this.getSpecialCardNameByPosition(3));
         //console.log('rolled '+total+" moving to game loop");
        }
