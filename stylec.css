@@ -4,7 +4,7 @@
 .responsive, .controls-container {
     display: none;
   }
-@media only screen and (orientation: landscape) and (max-width: 768px) {
+/* @media only screen and (orientation: landscape) and (max-width: 768px) {
 	.responsive, .controls-container {
 		display: block;
 	  }
@@ -19,7 +19,7 @@
   .rotate-message {
     display: none;
   }
-}
+} */
 
 body {
 	display: flex;
