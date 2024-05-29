@@ -1076,8 +1076,17 @@ monopolyGame.initializeGame();
 // // Listen for orientation changes
 // window.matchMedia("(orientation: portrait)").addListener(checkOrientation);
 // window.matchMedia("(orientation: landscape)").addListener(checkOrientation);
-window.addEventListener("orientationchange", function() {
-  if (window.orientation === 0 || window.orientation === 180) {
+function checkOrientation() {
+  if (window.innerWidth > window.innerHeight) {
+    // Landscape orientation
+      let rotateEle = document.getElementsByClassName("rotate-message");
+      let responEle = document.getElementsByClassName("responsive");
+      let usercontrolEle = document.getElementsByClassName("controls-container");
+      responEle.display = "block";
+      usercontrolEle = "block";
+      rotateEle.display ="none";
+    console.log("Landscape mode");
+  } else {
     // Portrait orientation
       let rotateEle = document.getElementsByClassName("rotate-message");
       let responEle = document.getElementsByClassName("responsive");
@@ -1086,14 +1095,12 @@ window.addEventListener("orientationchange", function() {
       usercontrolEle = "none";
       rotateEle.display ="block";
     console.log("Portrait mode");
-  } else {
-    // Landscape orientation
-     let rotateEle = document.getElementsByClassName("rotate-message");
-     let responEle = document.getElementsByClassName("responsive");
-      let usercontrolEle = document.getElementsByClassName("controls-container");
-      responEle.display = "block";
-      usercontrolEle = "block";
-      rotateEle.display ="none";
-    console.log("Landscape mode");
   }
-});
+}
+
+// Initial check
+checkOrientation();
+
+// Listen for resize events to detect orientation changes
+window.addEventListener("resize", checkOrientation);
+
