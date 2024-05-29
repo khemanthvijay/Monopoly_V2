@@ -1051,28 +1051,49 @@ handleSpecialCard(name, rolled) {
 const monopolyGame = new Game();
 monopolyGame.initializeGame();
 
-function checkOrientation() {
-  if (window.matchMedia("(orientation: portrait)").matches) {
+// function checkOrientation() {
+//   if (window.matchMedia("(orientation: portrait)").matches) {
+//       let rotateEle = document.getElementsByClassName("rotate-message");
+//       let responEle = document.getElementsByClassName("responsive");
+//       let usercontrolEle = document.getElementsByClassName("controls-container");
+//       responEle.display = "none";
+//       usercontrolEle = "none";
+//       rotateEle.display ="block";
+//     // Portrait orientation
+//     //console.log("Portrait mode");
+//   } else if (window.matchMedia("(orientation: landscape)").matches) {
+//     // Landscape orientation
+//     //console.log("Landscape mode");
+//       responEle.display = "block";
+//       usercontrolEle = "block";
+//       rotateEle.display ="none";
+//   }
+// }
+
+// // Initial check
+// checkOrientation();
+
+// // Listen for orientation changes
+// window.matchMedia("(orientation: portrait)").addListener(checkOrientation);
+// window.matchMedia("(orientation: landscape)").addListener(checkOrientation);
+window.addEventListener("orientationchange", function() {
+  if (window.orientation === 0 || window.orientation === 180) {
+    // Portrait orientation
       let rotateEle = document.getElementsByClassName("rotate-message");
       let responEle = document.getElementsByClassName("responsive");
       let usercontrolEle = document.getElementsByClassName("controls-container");
       responEle.display = "none";
       usercontrolEle = "none";
       rotateEle.display ="block";
-    // Portrait orientation
-    //console.log("Portrait mode");
-  } else if (window.matchMedia("(orientation: landscape)").matches) {
+    console.log("Portrait mode");
+  } else {
     // Landscape orientation
-    //console.log("Landscape mode");
+     let rotateEle = document.getElementsByClassName("rotate-message");
+     let responEle = document.getElementsByClassName("responsive");
+      let usercontrolEle = document.getElementsByClassName("controls-container");
       responEle.display = "block";
       usercontrolEle = "block";
       rotateEle.display ="none";
+    console.log("Landscape mode");
   }
-}
-
-// Initial check
-checkOrientation();
-
-// Listen for orientation changes
-window.matchMedia("(orientation: portrait)").addListener(checkOrientation);
-window.matchMedia("(orientation: landscape)").addListener(checkOrientation);
+});
