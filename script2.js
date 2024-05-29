@@ -784,12 +784,12 @@ class Game {
     
                 // Update player's money by subtracting the requested money and adding the offered money
                 if (this.tradeData[1].moneyOffered) {
-                    this.players[this.tradeData[0].offeredto - 1].addSubMoney(true, this.tradeData[1].moneyOffered, this);
-                    this.players[this.playerIndex - 1].addSubMoney(false, this.tradeData[1].moneyOffered, this);
+                    this.players[this.tradeData[0].offeredto - 1].addSubMoney(false, this.tradeData[1].moneyOffered, this);
+                    this.players[this.playerIndex - 1].addSubMoney(true, this.tradeData[1].moneyOffered, this);
                 }
                 if (this.tradeData[1].moneyRequested) {
-                    this.players[this.tradeData[0].offeredto - 1].addSubMoney(false, this.tradeData[1].moneyRequested, this);
-                    this.players[this.playerIndex - 1].addSubMoney(true, this.tradeData[1].moneyRequested, this);
+                    this.players[this.tradeData[0].offeredto - 1].addSubMoney(true, this.tradeData[1].moneyRequested, this);
+                    this.players[this.playerIndex - 1].addSubMoney(false, this.tradeData[1].moneyRequested, this);
                 }
                 this.clearpopup();
             });
@@ -879,9 +879,13 @@ class Game {
   else{
     if(prevPosition+total > this.max_container){
       // this.players[playerIndex-1].position = this.players[playerIndex-1].position+total - max_container;
+      if(prevPosition == 45){
+        newPosition = 10+total;
+      }
+      else{
       newPosition = prevPosition+total - this.max_container;
       this.players[this.playerIndex-1].addSubMoney(false, 200, this);
-      this.handlepopup('other','Salary 200 🤑🤑🤑','');
+      this.handlepopup('other','Salary 200 🤑🤑🤑','');}
     }
     else{
       newPosition = prevPosition + total;
@@ -978,7 +982,7 @@ handleSpecialCard(name, rolled) {
             4: () => [currentPlayer.addSubMoney(true, 100, this), this.handlepopup('chance', 'School fee Paid $100', "")],
             5: () => [this.changeposition(45), this.handlepopup('chance', 'Sent to Jail', 'Kidnap')],
             6: () => [currentPlayer.addSubMoney(false, 100, this), this.handlepopup('chance', 'You got Refund $100', "Bank Error")],
-            7: () => [this.changeposition(20), this.handlepopup('chance', 'Chance to Visit Kanpur', '')],
+            7: () => [this.changeposition(20), this.handlepopup('chance', 'Chance to Visit New York', '')],
             8: () => [currentPlayer.addSubMoney(true, 200, this), this.handlepopup('chance', 'Electric City Bill Paid $200')],
             9: () => this.handlepopup('chance', "Bank Error", 'Refund not Processed'),
             10: () => [currentPlayer.addSubMoney(false, 100, this), this.handlepopup('chance', 'Your property value increased', 'You are safe')],
@@ -986,11 +990,11 @@ handleSpecialCard(name, rolled) {
             12: () => [currentPlayer.addSubMoney(false, 100, this), this.handlepopup('chance', 'Bank Paid Interest $50', '')]
         },
         'community chest': {
-            22: () => [this.changeposition(18, rolled), this.handlepopup('chest', 'You are Visiting Indore', '')],
+            2: () => [this.changeposition(28, rolled), this.handlepopup('chest', 'You are Visiting Ventor avenue', '')],
             3: () => [currentPlayer.addSubMoney(true, 150, this), this.handlepopup('chest', 'Your Computer Damaged', 'Repair charges $150')],
             4: () => [this.changeposition(10), this.handlepopup('chest', 'Sent to Jail', 'Selling Illegal Items')],
             5: () => [this.movePlayerAnimation(6), this.handlepopup('chest', 'Moving six Steps Ahead', '')],
-            2: () => [this.splbirthday(),this.handlepopup('chest','Its Your Birthday','Collect 20 From Each Player')],
+            6: () => [this.splbirthday(),this.handlepopup('chest','Its Your Birthday','Collect 20 From Each Player')],
             7: () => [currentPlayer.addSubMoney(true, 50, this), this.handlepopup('chest', 'Doctor Visiting fee $50', '')],
             8: () => this.handlepopup('chest', 'Nothing Special', ''),
             9: () => [this.changeposition(1), this.handlepopup('chest', 'Advance to GO', '')],
@@ -1051,60 +1055,34 @@ handleSpecialCard(name, rolled) {
 const monopolyGame = new Game();
 monopolyGame.initializeGame();
 
-// function checkOrientation() {
-//   if (window.matchMedia("(orientation: portrait)").matches) {
-//       let rotateEle = document.getElementsByClassName("rotate-message");
-//       let responEle = document.getElementsByClassName("responsive");
-//       let usercontrolEle = document.getElementsByClassName("controls-container");
-//       responEle.display = "none";
-//       usercontrolEle = "none";
-//       rotateEle.display ="block";
-//     // Portrait orientation
-//     //console.log("Portrait mode");
-//   } else if (window.matchMedia("(orientation: landscape)").matches) {
-//     // Landscape orientation
-//     //console.log("Landscape mode");
-//       responEle.display = "block";
-//       usercontrolEle = "block";
-//       rotateEle.display ="none";
-//   }
-// }
-
-// // Initial check
-// checkOrientation();
-
-// // Listen for orientation changes
-// window.matchMedia("(orientation: portrait)").addListener(checkOrientation);
-// window.matchMedia("(orientation: landscape)").addListener(checkOrientation);
 document.addEventListener("DOMContentLoaded", function () {
-      let rotateEle = document.getElementById("rotate-message-id");
-      let responEle = document.getElementById("responsive-id");
-      let usercontrolEle = document.getElementById("controls-container-id");
+    let rotateEle = document.getElementById("rotate-message-id");
+    let responEle = document.getElementById("responsive-id");
+    let usercontrolEle = document.getElementById("controls-container-id");
 
-      function checkOrientation() {
-        if (window.innerWidth > window.innerHeight) {
-          // Landscape orientation
-          rotateEle.style.display = 'none';
-          responEle.style.display = 'block';
-          usercontrolEle.style.display = 'flex';
-          console.log("Landscape mode");
-        } else {
-          // Portrait orientation
-          rotateEle.style.display = 'block';
-          responEle.style.display = 'none';
-          usercontrolEle.style.display = 'none';
-          console.log("Portrait mode");
-        }
-        // Print display properties to console
-        console.log("rotateEle display: ", rotateEle.style.display);
-        console.log("responEle display: ", responEle.style.display);
-        console.log("usercontrolEle display: ", usercontrolEle.style.display);
+    function checkOrientation() {
+      if (window.innerWidth > window.innerHeight) {
+        // Landscape orientation
+        rotateEle.style.display = 'none';
+        responEle.style.display = 'block';
+        usercontrolEle.style.display = 'flex';
+        // console.log("Landscape mode");
+      } else {
+        // Portrait orientation
+        rotateEle.style.display = 'block';
+        responEle.style.display = 'none';
+        usercontrolEle.style.display = 'none';
+        // console.log("Portrait mode");
       }
+      // Print display properties to console
+    //   console.log("rotateEle display: ", rotateEle.style.display);
+    //   console.log("responEle display: ", responEle.style.display);
+    //   console.log("usercontrolEle display: ", usercontrolEle.style.display);
+     }
 
-      // Initial check
-      checkOrientation();
+    // Initial check
+    checkOrientation();
 
-      // Listen for resize events to detect orientation changes
-      window.addEventListener("resize", checkOrientation);
-    });
-
+    // Listen for resize events to detect orientation changes
+    window.addEventListener("resize", checkOrientation);
+  });
