@@ -1,9 +1,7 @@
 .rotate-message {
 	display: none;
   }
-.responsive, .controls-container {
-    display: none;
-  }
+
 /* @media only screen and (orientation: landscape) and (max-width: 768px) {
 	.responsive, .controls-container {
 		display: block;
@@ -31,6 +29,7 @@ div {
 }
 
 .responsive {
+    display: none;
     background: #cde6d0;
     width: 70vw;
     height: 96vh;
@@ -348,7 +347,7 @@ div {
 
 
 	.controls-container {
-/*     display: flex; */
+    display: none;
     justify-content: center;
     align-items: center;
     height: 100vh;
