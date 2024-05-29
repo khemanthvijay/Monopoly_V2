@@ -275,7 +275,7 @@ class Game {
       }
 
     checkNextPlayerJail() {
-        console.log('player index'+this.playerIndex);
+        //console.log('player index'+this.playerIndex);
         let nextplayer = this.players[this.playerIndex-1];
         if(nextplayer.jail[0]){
             this.handlepopup('jail','You Are In Jail','');
@@ -284,11 +284,11 @@ class Game {
     }
 
     handlejailwait(rolled) {
-        console.log('handle '+this.playerIndex);
+        //console.log('handle '+this.playerIndex);
         let currentPlayer = this.players[this.playerIndex-1];
         if(!currentPlayer.jail[0] || currentPlayer.jail[1] == 0 ){
            this.movePlayerAnimation(rolled);
-           console.log('checked not in jail'); 
+           //console.log('checked not in jail'); 
         }
         else{
             if(rolled == 6 ||rolled == 12){
@@ -328,7 +328,8 @@ class Game {
         else{currentPlayer.jail[1]++;
         currentPlayer.jail[0] = true;
         this.clearpopup();
-        console.log(currentPlayer.jail[1]);}
+        //console.log(currentPlayer.jail[1]);
+    }
     }
     placePlayerIcons() {
         // Get the (possibly newly created) container
@@ -363,7 +364,7 @@ class Game {
             diceEle.style.display = "block";
             }, 3000);
           docEle.innerHTML = this.messagePlayer[num];
-          console.log('welcome message '+"player 1 roll dice")
+          //console.log('welcome message '+"player 1 roll dice")
           }
           else if(num == 1){
           let upd = this.messagePlayer[num].replace('num',this.playerIndex);
@@ -404,23 +405,24 @@ class Game {
                 diceElement.classList.remove('fade-in');
             }, 3000);
         var total = parseInt(random1+random2);
-        this.movePlayerAnimation(total);
+        this.movePlayerAnimation(7);
         //console.log(this.getSpecialCardNameByPosition(3));
-        console.log('rolled '+total+" moving to game loop");
+        //console.log('rolled '+total+" moving to game loop");
        }
 
     buyProperty() {
         const currentPlayer = this.players[this.playerIndex - 1];
         const currentPosition = currentPlayer.position;
         const property = this.properties.find(p => p.position === currentPosition);
-        console.log(property);
+        //console.log(property);
 
         if (property && property.buy(currentPlayer, this)) {
-            console.log('bought');
+            //console.log('bought');
             this.handlepopup('buycard',`Card Bought ${property.name}`,'');
             this.addBuyIcon(property);
+            //console.log(currentPlayer.cards);
         } else {
-            console.log('cant buy');
+            //console.log('cant buy');
         }
     }
 
@@ -429,13 +431,13 @@ class Game {
         const container = document.getElementById("icon-position-" + property.position);
         const playerIconN = document.createElement("div");
         playerIconN.classList.add("playericon-n");
-        playerIconN.style.backgroundColor = this.color[this.playerIndex - 1];
+        playerIconN.style.backgroundColor = this.color[property.owner-1];
         container.appendChild(playerIconN);}
         else if(property.position > 10 && property.position <= 20){
             const container = document.getElementById("icon-position-" + property.position);
             const playerIconN = document.createElement("div");
             playerIconN.classList.add("playericon-n");
-            playerIconN.style.backgroundColor = this.color[this.playerIndex - 1];
+            playerIconN.style.backgroundColor = this.color[property.owner-1 ];
             playerIconN.style.transform = 'rotate(90deg)';
             playerIconN.style.top = '40%';
             playerIconN.style.left = '93%';
@@ -445,7 +447,7 @@ class Game {
             const container = document.getElementById("icon-position-" + property.position);
             const playerIconN = document.createElement("div");
             playerIconN.classList.add("playericon-n");
-            playerIconN.style.backgroundColor = this.color[this.playerIndex - 1];
+            playerIconN.style.backgroundColor = this.color[property.owner-1 ];
             playerIconN.style.transform = 'rotate(180deg)';
             playerIconN.style.top = '100%';
             playerIconN.style.left = '40%';
@@ -455,7 +457,7 @@ class Game {
             const container = document.getElementById("icon-position-" + property.position);
             const playerIconN = document.createElement("div");
             playerIconN.classList.add("playericon-n");
-            playerIconN.style.backgroundColor = this.color[this.playerIndex - 1];
+            playerIconN.style.backgroundColor = this.color[property.owner-1 ];
             playerIconN.style.transform = 'rotate(270deg)';
             playerIconN.style.top = '40%';
             playerIconN.style.left = '-16%';
@@ -473,7 +475,7 @@ class Game {
       }
 
     handlepopup(type,head,msg){
-        console.log("message "+head);
+        //console.log("message "+head);
         let popupEle = document.getElementById('popupcontainer');
         let heading = document.getElementById('heading-popupcontainer');
         let parentElement = document.getElementById('popup-dynamic');
@@ -535,7 +537,7 @@ class Game {
         }, 3000);
         heading.textContent= head;
         parentElement.innerHTML = msg;
-        console.log('rent')
+        //console.log('rent')
       }
       else if(type == 'income tax'|| type== 'chance'||type=='chest'||type == 'club'||type == 'other'){
         setTimeout(() => {
@@ -647,7 +649,7 @@ class Game {
           if(this.indexChange == maxPlayers+1 ||this.indexChange<1){
             this.indexChange= 1;
           }
-          console.log('this.indexChange '+this.indexChange);
+          //console.log('this.indexChange '+this.indexChange);
           document.getElementById('currentPlayer').innerText = this.players[this.indexChange-1].id;
           let playerCardsDropdown = document.getElementById('playerCards');
           playerCardsDropdown.innerHTML = '';
@@ -658,7 +660,7 @@ class Game {
           this.players[this.playerIndex - 1].cards.forEach(card => {
           let option = document.createElement('option');
           option.text = card;
-          console.log(this.players[this.playerIndex-1].cards);
+          //console.log(this.players[this.playerIndex-1].cards);
           playerCardsDropdown.add(option);
         });
         let tradeWithPlayerCardsDropdown = document.getElementById('requestedCards');
@@ -708,7 +710,7 @@ class Game {
               }
           
               // Push all data into the tradeData array
-              console.log(offeredCards+" "+requestedCards);
+              //console.log(offeredCards+" "+requestedCards);
               if(offeredCards != "select card" || requestedCards != "select card"){
               this.tradeData.push({
                   "offeredCards": offeredCards,
@@ -727,7 +729,7 @@ class Game {
 
           tradeoffered() {
             this.handlepopup('tradeoffered', 'Trade Offer');
-            console.log(this.tradeData);
+            //console.log(this.tradeData);
     
             let offeredCardsContainer = document.getElementById('offeredCardsContainer');
             offeredCardsContainer.innerHTML = '';
@@ -767,18 +769,30 @@ class Game {
             document.getElementById('requestedMoney').innerText = this.tradeData[1].moneyRequested;
     
             document.getElementById('acceptBtn').addEventListener('click', () => {
-                console.log(this.tradeData);
+                //console.log(this.tradeData);
                 let validOfferedCards = this.tradeData[1].offeredCards.filter(card => card !== "select card");
                 let validRequestedCards = this.tradeData[1].requestedCards.filter(card => card !== "select card");
     
                 if (validOfferedCards.length > 0) {
-                    console.log('offered' + validOfferedCards);
+                    //console.log('offered' + validOfferedCards);
                     this.deleteCardFromPlayer(this.playerIndex - 1, validOfferedCards);
-                    this.players[this.tradeData[0].offeredto - 1].cards.push(...validOfferedCards.map(card => this.getCardByName(card)));
+                    validOfferedCards.forEach(cardName => {
+                        let card = this.getCardByName(cardName);
+                        if (card) {
+                            card.owner = this.tradeData[0].offeredto;
+                            this.players[this.tradeData[0].offeredto - 1].cards.push(card);
+                        }
+                    });
                 }
                 if (validRequestedCards.length > 0) {
-                    console.log('requested' + validRequestedCards);
-                    this.players[this.playerIndex - 1].cards.push(...validRequestedCards.map(card => this.getCardByName(card)));
+                    //console.log('requested' + validRequestedCards);
+                    validRequestedCards.forEach(cardName => {
+                        let card = this.getCardByName(cardName);
+                        if (card) {
+                            card.owner = this.playerIndex; // Update the owner to the current player
+                            this.players[this.playerIndex - 1].cards.push(card);
+                        }
+                    });
                     this.deleteCardFromPlayer(parseInt(this.tradeData[0].offeredto) - 1, validRequestedCards);
                 }
     
@@ -791,22 +805,39 @@ class Game {
                     this.players[this.tradeData[0].offeredto - 1].addSubMoney(true, this.tradeData[1].moneyRequested, this);
                     this.players[this.playerIndex - 1].addSubMoney(false, this.tradeData[1].moneyRequested, this);
                 }
+                // Assuming tradeData contains information about the trade and updated ownership
+                this.tradeData[1].offeredCards.forEach(cardName => {
+                    const card = this.getCardByName(cardName); // Assuming you have a function to retrieve card object by name
+                    if (card) {
+                        this.addBuyIcon(card);
+                        // console.log('updated offered');
+                    }
+                });
+                this.tradeData[1].requestedCards.forEach(cardName => {
+                    const card = this.getCardByName(cardName); // Assuming you have a function to retrieve card object by name
+                    if (card) {
+                        this.addBuyIcon(card);
+                        // console.log('upated icon requested');
+                    }
+                });
+
                 this.clearpopup();
             });
     
             document.getElementById('rejectBtn').addEventListener('click', () => {
                 this.tradeData = [];
-                console.log('cleared ' + this.tradeData);
+                // console.log('cleared ' + this.tradeData);
                 this.clearpopup();
             });
-            this.players.forEach(player => {
-                console.log(`Player ${player.id} cards:`, player.cards);
-            });
+            // this.players.forEach(player => {
+            //      console.log(`Player ${player.id} cards:`, player.cards);
+            // });
         }
         deleteCardFromPlayer(playerId, card) {
             const playerCards = this.players[playerId].cards;
+            //console.log(playerCards);
             for (let i = 0; i < playerCards.length; i++) {
-                if (playerCards[i][0] ==card) {
+                if (playerCards[i] == card) {
                     playerCards.splice(i, 1); // Remove the card from the player's cards array
                     let property = this.properties.find(property => property.card === card && property.owner === playerId);
                     if (property) {
@@ -820,21 +851,21 @@ class Game {
         getCardByName(cardName) {
             for (const property of this.properties) {
                 if (String(property.name) === String(cardName)) {
-                    console.log("Card found:", property);
+                    //console.log("Card found:", property);
                     return property;
                 }
             }
-            console.log("Card not found.");
+            //console.log("Card not found.");
             return null; // Return null if card name is not found
         }
 
     changeposition(newpos, total) {
-        console.log('changing to ' + newpos);
+        //console.log('changing to ' + newpos);
         const currentPlayer = this.players[this.playerIndex - 1];
         const prevpos = currentPlayer.position;
     
         if (newpos < prevpos) {
-            console.log('crossing GO');
+            //console.log('crossing GO');
             //handle if jail
             currentPlayer.addSubMoney(false, 200, this); // Adding $200 for crossing GO
         }
@@ -859,7 +890,7 @@ class Game {
         const splcard = this.getSpecialCardNameByPosition(newpos);
     
         if (splcard === 'Card not found') {
-            console.log('check rent');
+            //console.log('check rent');
             const property = this.properties.find(prop => prop.position === newpos);
             if (property.owner !== this.players[this.playerIndex-1].id)
                 property.payRent(this.players[this.playerIndex-1], this, total);
@@ -873,7 +904,7 @@ class Game {
   const prevPosition = this.players[this.playerIndex - 1].position;
   let newPosition = 0;
   if(prevPosition == 45 && this.players[this.playerIndex-1].jail[0]){
-    console.log('sent to handlejaol'+this.players[this.playerIndex-1].jail[0]);
+    //console.log('sent to handlejaol'+this.players[this.playerIndex-1].jail[0]);
     this.handlejailwait(total);
   }
   else{
@@ -930,17 +961,17 @@ setTimeout(() => {
     playerIcon.style.color = this.players[this.playerIndex-1].color; // Assuming player has a color property
     playerIcon.innerHTML = this.players[this.playerIndex-1].icon; // Assuming player.icon contains the character
     nextPosElement.appendChild(playerIcon);
-    console.log(nextPosElement);
+    //console.log(nextPosElement);
     this.players[this.playerIndex - 1].position = newPosition;
     let splcard = this.getSpecialCardNameByPosition(newPosition);
-    console.log(splcard);
+    //console.log(splcard);
     if(splcard == 'Card not found'){
-        console.log('check rent');
+        //console.log('check rent');
         const property = this.properties.find(prop => prop.position === newPosition);
         if (property.owner !== this.players[this.playerIndex-1].id)
             property.payRent(this.players[this.playerIndex-1], this, total);
     }else{
-    console.log('rolled '+total);
+    //console.log('rolled '+total);
     this.handleSpecialCard(splcard, total); 
 }
 }, (steps + jumpCount) * 200); // Total animation duration
@@ -973,14 +1004,14 @@ splbirthday() {
 
 
 handleSpecialCard(name, rolled) {
-    console.log(name);
+    //console.log(name);
     let currentPlayer = this.players[this.playerIndex-1];
     const specialActions = {
         'chance': {
-            2: () => [this.changeposition(45, rolled), this.handlepopup('chance', "Sent to Jail", "Crime")],
+            2: () => [this.changeposition(45, rolled), /*this.handlepopup('chance', "Sent to Jail", "Crime")*/],
             3: () => [this.movePlayerAnimation(3, rolled), this.handlepopup('chance', 'Moving 3 Forward', "")],
             4: () => [currentPlayer.addSubMoney(true, 100, this), this.handlepopup('chance', 'School fee Paid $100', "")],
-            5: () => [this.changeposition(45), this.handlepopup('chance', 'Sent to Jail', 'Kidnap')],
+            5: () => [this.changeposition(45), /*this.handlepopup('chance', 'Sent to Jail', 'Kidnap')*/],
             6: () => [currentPlayer.addSubMoney(false, 100, this), this.handlepopup('chance', 'You got Refund $100', "Bank Error")],
             7: () => [this.changeposition(20), this.handlepopup('chance', 'Chance to Visit New York', '')],
             8: () => [currentPlayer.addSubMoney(true, 200, this), this.handlepopup('chance', 'Electric City Bill Paid $200')],
@@ -992,7 +1023,7 @@ handleSpecialCard(name, rolled) {
         'community chest': {
             2: () => [this.changeposition(28, rolled), this.handlepopup('chest', 'You are Visiting Ventor avenue', '')],
             3: () => [currentPlayer.addSubMoney(true, 150, this), this.handlepopup('chest', 'Your Computer Damaged', 'Repair charges $150')],
-            4: () => [this.changeposition(10), this.handlepopup('chest', 'Sent to Jail', 'Selling Illegal Items')],
+            4: () => [this.changeposition(45), /*this.handlepopup('chest', 'Sent to Jail', 'Selling Illegal Items')*/],
             5: () => [this.movePlayerAnimation(6), this.handlepopup('chest', 'Moving six Steps Ahead', '')],
             6: () => [this.splbirthday(),this.handlepopup('chest','Its Your Birthday','Collect 20 From Each Player')],
             7: () => [currentPlayer.addSubMoney(true, 50, this), this.handlepopup('chest', 'Doctor Visiting fee $50', '')],
