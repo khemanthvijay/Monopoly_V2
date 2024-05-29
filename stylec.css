@@ -1,5 +1,5 @@
 .rotate-message {
-	display: block;
+	display: none;
   }
 .responsive, .controls-container {
     display: none;
@@ -348,7 +348,7 @@ div {
 
 
 	.controls-container {
-    display: flex;
+/*     display: flex; */
     justify-content: center;
     align-items: center;
     height: 100vh;
