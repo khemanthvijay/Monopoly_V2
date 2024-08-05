@@ -206,7 +206,7 @@ class Game {
             this.playerIndex = 1;
         if(this.players[this.playerIndex-1].bankrupt){
             this.playerIndex++;
-            if(this.playerIndex == this.players.length)
+            if(this.playerIndex >= this.players.length)
                 this.playerIndex = 1;
         }
         let playersbankrupt =this.players.filter(player => player.isBankrupt).length;
